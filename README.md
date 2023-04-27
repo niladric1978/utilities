@@ -65,3 +65,35 @@ Start-time               End-time               Total-MB  MB/sec Total-messages 
 2023-04-26 19:37:46:504, 2023-04-26 19:37:58:808, 0.4768, 0.0388, 5000, 406.3719
 
 
+======================================
+** End to End delivery latency Test **
+======================================
+
+1. Semder receiver workload - 15000 messaged, sent, immediately consumed and checked for integrity
+===================================================================================================
+
+a) Reactive test:
+------------------
+
+Avg latency: 0.7709 ms
+
+19:44:15.055 [reactive-kafka-reactivekafka-perf-24-1] DEBUG org.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-reactivekafka-perf-24-1, groupId=reactivekafka-perf-24] Received FETCH response from node 0 for request with header RequestHeader(apiKey=FETCH, apiVersion=13, clientId=consumer-reactivekafka-perf-24-1, correlationId=43602): FetchResponseData(throttleTimeMs=0, errorCode=0, sessionId=1834361329, responses=[])
+Total latency: 11563.3521 ms
+
+
+19:44:15.061 [reactive-kafka-reactivekafka-perf-24-1] DEBUG org.apache.kafka.clients.consumer.internals.Fetcher - [Consumer clientId=consumer-reactivekafka-perf-24-1, groupId=reactivekafka-perf-24] Sending READ_UNCOMMITTED IncrementalFetchRequest(toSend=(), toForget=(), toReplace=(), implied=(neurontest4-2, neurontest4-1, neurontest4-3, neurontest4-0), canUseTopicIds=True) to broker localhost:9092 (id: 0 rack: null)
+19:44:15.061 [reactive-kafka-reactivekafka-perf-24-1] DEBUG org.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-reactivekafka-perf-24-1, groupId=reactivekafka-perf-24] Sending FETCH request with header RequestHeader(apiKey=FETCH, apiVersion=13, clientId=consumer-reactivekafka-perf-24-1, correlationId=43629) and timeout 30000 to node 0: FetchRequestData(clusterId=null, replicaId=-1, maxWaitMs=0, minBytes=1, maxBytes=20971520, isolationLevel=0, sessionId=1834361329, sessionEpoch=43617, topics=[], forgottenTopicsData=[], rackId='')
+Percentiles: 50th = 0.3566, 75th = 0.5135, 90th = 0.8545, 99th = 5.0618, 99.9th = 17.4088
+
+a) consumer poll test:
+--------------------
+
+19:49:02.603 [main] DEBUG org.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-reactivekafka-perf-27-1, groupId=reactivekafka-perf-27] Sending FETCH request with header RequestHeader(apiKey=FETCH, apiVersion=13, clientId=consumer-reactivekafka-perf-27-1, correlationId=29542) and timeout 30000 to node 0: FetchRequestData(clusterId=null, replicaId=-1, maxWaitMs=0, minBytes=1, maxBytes=20971520, isolationLevel=0, sessionId=1525115097, sessionEpoch=29527, topics=[FetchTopic(topic='neurontest4', topicId=VECPhSlaSaOAmH48OUoH4A, partitions=[FetchPartition(partition=2, currentLeaderEpoch=0, fetchOffset=63217, lastFetchedEpoch=-1, logStartOffset=-1, partitionMaxBytes=20971520)])], forgottenTopicsData=[], rackId='')
+Avg latency: 0.8306 ms
+
+Total latency: 12459.3136 ms
+
+Percentiles: 50th = 0.2623, 75th = 0.4339, 90th = 1.3671, 99th = 7.2963, 99.9th = 21.4052
+
+
+
