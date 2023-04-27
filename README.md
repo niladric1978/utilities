@@ -64,6 +64,15 @@ WARNING: record=5076 Thread[#40,pool-1-thread-12,5,main]
 Start-time               End-time               Total-MB  MB/sec Total-messages Messages/sec
 2023-04-26 19:37:46:504, 2023-04-26 19:37:58:808, 0.4768, 0.0388, 5000, 406.3719
 
+with fixed workload of 50 ms per message -
+
+reactive -
+Start-time               End-time               Total-MB  MB/sec Total-messages Messages/sec
+2023-04-27 08:52:21:023, 2023-04-27 08:52:23:832, 0.4769, 0.1698, 5001, 1780.3489
+
+non-reactive -
+Start-time               End-time               Total-MB  MB/sec Total-messages Messages/sec
+2023-04-27 08:54:19:473, 2023-04-27 08:54:42:789, 0.4768, 0.0205, 5000, 214.4450
 
 ======================================
 ** End to End delivery latency Test **
